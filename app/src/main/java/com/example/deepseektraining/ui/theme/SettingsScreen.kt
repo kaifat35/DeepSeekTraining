@@ -7,20 +7,28 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
 import viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = viewModel()) {
     val darkThemeEnabled = viewModel.darkThemeEnabled
     val username = viewModel.username
+
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -45,10 +53,16 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
         )
 
         Button(
-            onClick = {  navController.navigateUp() }, // Вернуться на предыдущий экран
+            onClick = {
+                scope.launch {
+                    snackbarHostState.showSnackbar("Настройки сохранены")
+                }
+                navController.navigateUp() // Вернуться на предыдущий экран
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Сохранить и вернуться")
         }
+        SnackbarHost(hostState = snackbarHostState)
     }
 }
