@@ -16,6 +16,7 @@ class SettingsDataStore(private val context: Context) {
     companion object {
         val DARK_THEME_ENABLED = booleanPreferencesKey("dark_theme_enabled")
         val USERNAME = stringPreferencesKey("username")
+        val LANGUAGE = stringPreferencesKey("language")
     }
 
     val darkThemeEnabled: Flow<Boolean> = context.dataStore.data
@@ -37,6 +38,18 @@ class SettingsDataStore(private val context: Context) {
     suspend fun updateUsername(newUsername: String) {
         context.dataStore.edit { preferences ->
             preferences[USERNAME] = newUsername
+        }
+    }
+
+
+    val language: Flow<String> = context.dataStore.data
+        .map { preferences ->
+            preferences[LANGUAGE] ?: "ru" // По умолчанию русский
+        }
+
+    suspend fun updateLanguage(languageCode: String) {
+        context.dataStore.edit { preferences ->
+            preferences[LANGUAGE] = languageCode
         }
     }
 }

@@ -50,4 +50,9 @@ open class SettingsViewModel(private val settingsDataStore: SettingsDataStore) :
             }
         }
     }
+
+    suspend fun setLanguage(languageCode: String) {
+        // Сохраняем язык в DataStore
+        settingsDataStore.updateLanguage(languageCode)
+    }
 }

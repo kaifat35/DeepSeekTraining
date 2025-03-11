@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DeepSeek Training</string>
+    <string name="home_screen">Домашний экран</string>
+    <string name="settings_screen">Настройки</string>
+    <string name="profile_screen">Профиль</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="save_and_return">Сохранить и вернуться</string>
+    <string name="settings">Настройки</string>
+    <string name="dark_theme_off">Темная тема выключена</string>
+    <string name="dark_theme_on">Темная тема включена</string>
+    <string name="user_profile">Профиль пользователя</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="About_the_app">О приложении</string>
+    <string name="app_for_learning_Jetpack_Compose">Это учебное приложение для изучения Jetpack Compose.</string>
+    <string name="Return_to_the_main_screen">Вернуться на главный экран</string>
+    <string name="Change_the_language">Изменить язык</string>
+    <string name="Select_a_language">Выберите язык</string>
+    <string name="Russian">Русский</string>
+    <string name="English">Английский</string>
+</resources>

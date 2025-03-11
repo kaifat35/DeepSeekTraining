@@ -24,12 +24,26 @@ import com.example.deepseektraining.ui.theme.ProfileScreen
 import com.example.deepseektraining.ui.theme.SettingsScreen
 import viewmodel.SettingsViewModel
 import androidx.compose.animation.AnimatedContent
+import androidx.lifecycle.lifecycleScope
+import com.example.deepseektraining.ui.theme.AboutScreen
+import com.example.deepseektraining.ui.theme.LanguageSettingsScreen
+import com.example.deepseektraining.ui.theme.SettingsDataStore
+import com.example.deepseektraining.ui.theme.setLocale
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
+        // Применяем сохраненный язык
+        lifecycleScope.launch {
+            val settingsDataStore = SettingsDataStore(this@MainActivity)
+            val languageCode = settingsDataStore.language.first()
+            setLocale(this@MainActivity, languageCode)
+        }
+
+            setContent {
             // Получаем ViewModel
             val viewModel: SettingsViewModel = viewModel(factory = SettingsViewModel.Factory)
 
@@ -105,10 +119,14 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
                 }
             }
         }
+        composable("about") {
+            AboutScreen(navController)
+        }
+        composable("languageSettings") {
+            LanguageSettingsScreen(viewModel)
+        }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

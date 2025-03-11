@@ -17,8 +17,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.deepseektraining.R
 import kotlinx.coroutines.launch
 
 
@@ -30,11 +32,11 @@ fun ProfileScreen(navController: NavController, viewModel: SettingsViewModel) {
 
 
     Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "Профиль пользователя", style = MaterialTheme.typography.headlineMedium)
+        Text(stringResource(R.string.user_profile), style = MaterialTheme.typography.headlineMedium)
         TextField(
             value = username,
             onValueChange = { username = it },
-            label = { Text("Имя пользователя") },
+            label = { Text(stringResource(R.string.user_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -47,7 +49,7 @@ fun ProfileScreen(navController: NavController, viewModel: SettingsViewModel) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Сохранить")
+            Text(stringResource(R.string.save_and_return))
         }
         SnackbarHost(hostState = snackbarHostState)
     }

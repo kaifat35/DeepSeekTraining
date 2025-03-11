@@ -9,7 +9,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.example.deepseektraining.R
 
 @Composable
 fun HomeScreen(navController: NavController) {
@@ -23,12 +25,15 @@ fun HomeScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
             ) {
-                Text(text = "Домашний экран")
+                Text(text = stringResource(R.string.home_screen))
                 Button(onClick = { navController.navigate("settings") }) {
-                    Text("Перейти к настройкам")
+                    Text(stringResource(R.string.settings_screen))
                 }
                 Button(onClick = { navController.navigate("profile") }) {
-                    Text("Перейти к профилю")
+                    Text(stringResource(R.string.profile_screen))
+                }
+                Button(onClick = { navController.navigate("about") }) {
+                    Text(stringResource(R.string.About_the_app))
                 }
             }
         }

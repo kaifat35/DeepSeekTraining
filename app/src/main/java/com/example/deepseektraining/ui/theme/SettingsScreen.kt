@@ -11,22 +11,20 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.deepseektraining.R
 import kotlinx.coroutines.launch
 import viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = viewModel()) {
-    val darkThemeEnabled = viewModel.darkThemeEnabled
-    val username = viewModel.username
-
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
@@ -36,21 +34,21 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Text(text = "Настройки", style = MaterialTheme.typography.headlineMedium)
+        Text(stringResource(R.string.settings_screen), style = MaterialTheme.typography.headlineMedium)
 
         Switch(
-            checked = darkThemeEnabled,
-            onCheckedChange = { viewModel.toggleDarkTheme(it) },
+            checked = viewModel.darkThemeEnabled,
+            onCheckedChange = { enabled ->
+                viewModel.toggleDarkTheme(enabled)
+                scope.launch {
+                    snackbarHostState.showSnackbar(
+                        if (enabled) "Темная тема включена" else "Темная тема выключена"
+                    )
+                }
+            },
             modifier = Modifier.fillMaxWidth()
         )
-        Text(text = "Темная тема")
-
-        TextField(
-            value = username,
-            onValueChange = { newUsername -> viewModel.updateUsername(newUsername) },
-            label = { Text("Имя пользователя") },
-            modifier = Modifier.fillMaxWidth()
-        )
+        Text(stringResource(R.string.dark_theme))
 
         Button(
             onClick = {
@@ -61,8 +59,11 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Сохранить и вернуться")
+            Text(stringResource(R.string.save_and_return))
         }
         SnackbarHost(hostState = snackbarHostState)
+        Button(onClick = { navController.navigate("languageSettings") }) {
+            Text(stringResource(R.string.Change_the_language))
+        }
     }
 }
