@@ -67,4 +67,15 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:5.5.0")
     testImplementation (libs.mockito.kotlin)
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
+    // Retrofit для работы с API
+    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Coil для загрузки изображений
+    implementation ("io.coil-kt:coil-compose:2.7.0")
+
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+
 }

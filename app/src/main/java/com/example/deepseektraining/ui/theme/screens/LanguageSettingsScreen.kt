@@ -1,5 +1,4 @@
-
-package com.example.deepseektraining.ui.theme
+package com.example.deepseektraining.ui.theme.screens
 
 import android.app.Activity
 import android.content.Context
@@ -60,18 +59,36 @@ fun LanguageSettingsScreen(viewModel: SettingsViewModel) {
 }
 
 
-    fun setLocale(context: Context, languageCode: String) {
-        val locale = Locale(languageCode)
-        Locale.setDefault(locale)
-        val config = Configuration(context.resources.configuration)
-        config.setLocale(locale)
-        context.createConfigurationContext(config)
-        context.resources.updateConfiguration(config, context.resources.displayMetrics)
-    }
+fun setLocale(context: Context, languageCode: String) {
+    // Шаг 1: Создаем объект Locale
+    val locale = Locale(languageCode)
 
-    fun restartActivity(context: Context) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        context.startActivity(intent)
-        (context as? Activity)?.finish()
-    }
+    // Шаг 2: Устанавливаем локаль по умолчанию для JVM
+    Locale.setDefault(locale)
+
+    // Шаг 3: Получаем текущую конфигурацию ресурсов
+    val config = Configuration(context.resources.configuration)
+
+    // Шаг 4: Устанавливаем локаль в конфигурацию
+    config.setLocale(locale)
+
+    // Шаг 5: Создаем новый контекст с обновленной конфигурацией
+    context.createConfigurationContext(config)
+
+    // Шаг 6: Обновляем конфигурацию ресурсов приложения
+    context.resources.updateConfiguration(config, context.resources.displayMetrics)
+}
+
+fun restartActivity(context: Context) {
+    // Шаг 1: Создаем Intent для перезапуска MainActivity
+    val intent = Intent(context, MainActivity::class.java)
+
+    // Шаг 2: Устанавливаем флаги для Intent
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+
+    // Шаг 3: Запускаем MainActivity
+    context.startActivity(intent)
+
+    // Шаг 4: Завершаем текущую Activity (если контекст является Activity)
+    (context as? Activity)?.finish()
+}

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.deepseektraining.ui.theme.SettingsDataStore
+import com.example.deepseektraining.data.SettingsDataStore
 import kotlinx.coroutines.launch
 
 open class SettingsViewModel(private val settingsDataStore: SettingsDataStore) : ViewModel() {

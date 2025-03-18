@@ -1,4 +1,4 @@
-package com.example.deepseektraining.ui.theme
+package com.example.deepseektraining.ui.theme.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
@@ -23,7 +24,7 @@ fun HomeScreen(navController: NavController) {
                     .fillMaxSize()
                     .padding(innerPadding),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(text = stringResource(R.string.home_screen))
                 Button(onClick = { navController.navigate("settings") }) {
@@ -34,6 +35,9 @@ fun HomeScreen(navController: NavController) {
                 }
                 Button(onClick = { navController.navigate("about") }) {
                     Text(stringResource(R.string.About_the_app))
+                }
+                Button(onClick = { navController.navigate("photos") }) {
+                    Text(text = "Посмотреть фотографии")
                 }
             }
         }

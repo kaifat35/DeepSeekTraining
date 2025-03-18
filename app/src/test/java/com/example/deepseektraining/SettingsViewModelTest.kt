@@ -1,6 +1,6 @@
 package com.example.deepseektraining
 
-import com.example.deepseektraining.ui.theme.SettingsDataStore
+import com.example.deepseektraining.data.SettingsDataStore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals

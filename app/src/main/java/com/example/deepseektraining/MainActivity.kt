@@ -19,16 +19,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.deepseektraining.ui.theme.DeepSeekTrainingTheme
-import com.example.deepseektraining.ui.theme.HomeScreen
-import com.example.deepseektraining.ui.theme.ProfileScreen
-import com.example.deepseektraining.ui.theme.SettingsScreen
+import com.example.deepseektraining.ui.theme.screens.HomeScreen
+import com.example.deepseektraining.ui.theme.screens.ProfileScreen
+import com.example.deepseektraining.ui.theme.screens.SettingsScreen
 import viewmodel.SettingsViewModel
 import androidx.compose.animation.AnimatedContent
 import androidx.lifecycle.lifecycleScope
-import com.example.deepseektraining.ui.theme.AboutScreen
-import com.example.deepseektraining.ui.theme.LanguageSettingsScreen
-import com.example.deepseektraining.ui.theme.SettingsDataStore
-import com.example.deepseektraining.ui.theme.setLocale
+import com.example.deepseektraining.ui.theme.screens.AboutScreen
+import com.example.deepseektraining.ui.theme.screens.LanguageSettingsScreen
+import com.example.deepseektraining.data.SettingsDataStore
+import com.example.deepseektraining.ui.theme.screens.PhotoScreen
+import com.example.deepseektraining.ui.theme.screens.setLocale
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -125,6 +126,7 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
         composable("languageSettings") {
             LanguageSettingsScreen(viewModel)
         }
+        composable("photos") { PhotoScreen() }
     }
 }
 

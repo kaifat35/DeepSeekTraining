@@ -1,4 +1,4 @@
-package com.example.deepseektraining.ui.theme
+package com.example.deepseektraining.ui.theme.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

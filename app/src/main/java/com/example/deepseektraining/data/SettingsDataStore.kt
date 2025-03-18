@@ -1,4 +1,4 @@
-package com.example.deepseektraining.ui.theme
+package com.example.deepseektraining.data
 
 import android.content.Context
 import androidx.datastore.core.DataStore
