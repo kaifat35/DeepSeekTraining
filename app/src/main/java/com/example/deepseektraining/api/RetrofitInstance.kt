@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://api.unsplash.com/" // Замени на реальный базовый URL
+    private const val BASE_URL = "https://api.unsplash.com/"
 
     val api: PhotoApiService by lazy {
         Retrofit.Builder()
