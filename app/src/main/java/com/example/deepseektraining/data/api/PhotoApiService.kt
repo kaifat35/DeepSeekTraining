@@ -1,7 +1,6 @@
-package com.example.deepseektraining.api
+package com.example.deepseektraining.data.api
 
-
-import com.example.deepseektraining.data.Photo
+import com.example.deepseektraining.data.model.Photo
 import retrofit2.http.GET
 import retrofit2.http.Header
 

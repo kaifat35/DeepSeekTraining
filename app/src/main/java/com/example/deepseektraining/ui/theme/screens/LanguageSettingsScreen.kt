@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.example.deepseektraining.MainActivity
 import com.example.deepseektraining.R
 import kotlinx.coroutines.launch
-import viewmodel.SettingsViewModel
+import com.example.deepseektraining.viewmodel.SettingsViewModel
 
 @Composable
 fun LanguageSettingsScreen(viewModel: SettingsViewModel) {

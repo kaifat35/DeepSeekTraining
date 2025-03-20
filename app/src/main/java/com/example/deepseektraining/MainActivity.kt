@@ -22,7 +22,7 @@ import com.example.deepseektraining.ui.theme.DeepSeekTrainingTheme
 import com.example.deepseektraining.ui.theme.screens.HomeScreen
 import com.example.deepseektraining.ui.theme.screens.ProfileScreen
 import com.example.deepseektraining.ui.theme.screens.SettingsScreen
-import viewmodel.SettingsViewModel
+import com.example.deepseektraining.viewmodel.SettingsViewModel
 import androidx.compose.animation.AnimatedContent
 import androidx.lifecycle.lifecycleScope
 import com.example.deepseektraining.ui.theme.screens.AboutScreen

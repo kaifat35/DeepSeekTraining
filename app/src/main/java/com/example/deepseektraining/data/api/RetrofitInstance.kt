@@ -1,4 +1,4 @@
-package com.example.deepseektraining.api
+package com.example.deepseektraining.data.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

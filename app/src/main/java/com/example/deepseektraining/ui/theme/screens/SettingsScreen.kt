@@ -21,7 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.deepseektraining.R
 import kotlinx.coroutines.launch
-import viewmodel.SettingsViewModel
+import com.example.deepseektraining.viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = viewModel()) {

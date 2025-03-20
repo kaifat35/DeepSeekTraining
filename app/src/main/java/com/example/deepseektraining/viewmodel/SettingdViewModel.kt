@@ -1,4 +1,4 @@
-package viewmodel
+package com.example.deepseektraining.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

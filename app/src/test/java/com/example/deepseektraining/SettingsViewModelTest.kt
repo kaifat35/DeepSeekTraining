@@ -8,7 +8,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.mock
-import viewmodel.SettingsViewModel
+import com.example.deepseektraining.viewmodel.SettingsViewModel
 
 
 @ExperimentalCoroutinesApi

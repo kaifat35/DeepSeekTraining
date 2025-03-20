@@ -1,9 +1,9 @@
-package viewmodel
+package com.example.deepseektraining.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.deepseektraining.data.Photo
-import com.example.deepseektraining.repository.PhotoRepository
+import com.example.deepseektraining.data.model.Photo
+import com.example.deepseektraining.data.repository.PhotoRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

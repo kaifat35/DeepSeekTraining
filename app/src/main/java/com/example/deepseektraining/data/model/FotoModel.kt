@@ -1,4 +1,4 @@
-package com.example.deepseektraining.data
+package com.example.deepseektraining.data.model
 
 data class Photo(
     val id: String,

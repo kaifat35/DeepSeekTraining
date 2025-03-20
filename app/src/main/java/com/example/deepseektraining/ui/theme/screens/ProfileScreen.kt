@@ -2,7 +2,7 @@ package com.example.deepseektraining.ui.theme.screens
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
-import viewmodel.SettingsViewModel
+import com.example.deepseektraining.viewmodel.SettingsViewModel
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button

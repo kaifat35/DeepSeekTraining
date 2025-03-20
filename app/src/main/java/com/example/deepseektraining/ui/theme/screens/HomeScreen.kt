@@ -37,7 +37,7 @@ fun HomeScreen(navController: NavController) {
                     Text(stringResource(R.string.About_the_app))
                 }
                 Button(onClick = { navController.navigate("photos") }) {
-                    Text(text = "Посмотреть фотографии")
+                    Text(stringResource(R.string.View_photos))
                 }
             }
         }
