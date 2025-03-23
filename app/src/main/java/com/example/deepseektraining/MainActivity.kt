@@ -28,11 +28,14 @@ import androidx.lifecycle.lifecycleScope
 import com.example.deepseektraining.ui.theme.screens.AboutScreen
 import com.example.deepseektraining.ui.theme.screens.LanguageSettingsScreen
 import com.example.deepseektraining.data.SettingsDataStore
+import com.example.deepseektraining.ui.theme.screens.MovieScreen
 import com.example.deepseektraining.ui.theme.screens.PhotoScreen
 import com.example.deepseektraining.ui.theme.screens.setLocale
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,7 +129,12 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
         composable("languageSettings") {
             LanguageSettingsScreen(viewModel)
         }
-        composable("photos") { PhotoScreen() }
+        composable("photos") {
+            PhotoScreen()
+        }
+        composable("movies") {
+            MovieScreen()
+        }
     }
 }
 

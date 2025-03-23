@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -66,7 +68,7 @@ dependencies {
     testImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation ("org.mockito:mockito-core:5.5.0")
     testImplementation (libs.mockito.kotlin)
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
 
     // Retrofit для работы с API
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
@@ -77,5 +79,9 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.7.0")
 
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    //Hilt для работы с API
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
 }

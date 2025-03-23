@@ -8,8 +8,13 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.deepseektraining.data.SettingsDataStore
 import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-open class SettingsViewModel(private val settingsDataStore: SettingsDataStore) : ViewModel() {
+@HiltViewModel
+class SettingsViewModel @Inject constructor(
+    private val settingsDataStore: SettingsDataStore
+) : ViewModel() {
     private val _darkThemeEnabled = mutableStateOf(false)
     open val darkThemeEnabled: Boolean get() = _darkThemeEnabled.value
 
