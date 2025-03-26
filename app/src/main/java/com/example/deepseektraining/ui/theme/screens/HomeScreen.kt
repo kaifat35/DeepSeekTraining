@@ -40,7 +40,7 @@ fun HomeScreen(navController: NavController) {
                     Text(stringResource(R.string.View_photos))
                 }
                 Button(onClick = { navController.navigate("movies") }) {
-                    Text("View Movies")
+                    Text(stringResource(R.string.View_Movies))
                 }
             }
         }

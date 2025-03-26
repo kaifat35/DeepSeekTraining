@@ -77,8 +77,7 @@ dependencies {
 
     // Coil для загрузки изображений
     implementation ("io.coil-kt:coil-compose:2.7.0")
-
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    
     //Hilt для работы с API
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
