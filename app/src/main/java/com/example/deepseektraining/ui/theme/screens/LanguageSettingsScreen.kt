@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.deepseektraining.ui.theme.screens
 
 import android.app.Activity
