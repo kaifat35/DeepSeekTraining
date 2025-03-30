@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -64,7 +65,6 @@ dependencies {
     implementation (libs.ui.tooling.preview)
     implementation (libs.androidx.lifecycle.viewmodel.compose)
     implementation (libs.androidx.activity.compose.v182)
-    implementation ("androidx.datastore:datastore-preferences:1.1.3")
     testImplementation ("androidx.arch.core:core-testing:2.2.0")
     testImplementation ("org.mockito:mockito-core:5.5.0")
     testImplementation (libs.mockito.kotlin)
@@ -85,9 +85,11 @@ dependencies {
 
 
     // Room
-    implementation ("androidx.room:room-runtime:2.6.1")
-    implementation ("androidx.room:room-ktx:2.6.1")
-    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp("androidx.room:room-compiler:2.6.1")
+    // DataStore
+    implementation ("androidx.datastore:datastore-preferences:1.1.0")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
 

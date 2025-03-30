@@ -1,6 +1,6 @@
 package com.example.deepseektraining.data.db
 
-/*import androidx.room.Entity
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 
@@ -17,4 +17,4 @@ data class MovieEntity(
     @ColumnInfo(name = "ratingImdb")val ratingImdb: Double?,
     @ColumnInfo(name = "filmLength")val filmLength: Int?,
     val lastUpdated: Long = System.currentTimeMillis()
-)*/
+)

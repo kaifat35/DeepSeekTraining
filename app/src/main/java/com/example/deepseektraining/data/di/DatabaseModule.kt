@@ -1,6 +1,6 @@
 package com.example.deepseektraining.data.di
 
-/*import android.content.Context
+import android.content.Context
 import com.example.deepseektraining.data.db.AppDatabase
 import com.example.deepseektraining.data.db.MovieDao
 import dagger.Module
@@ -22,5 +22,5 @@ object DatabaseModule {
 
     @Provides
     fun provideMovieDao(db: AppDatabase): MovieDao = db.movieDao()
-}*/
+}
 
