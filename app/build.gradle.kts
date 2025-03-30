@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
     id("com.google.devtools.ksp")
 }
 
@@ -80,9 +79,8 @@ dependencies {
     
     //Hilt для работы с API
     implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-
+    ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -95,5 +93,4 @@ dependencies {
 
     // Для обработки метаданных
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
-
 }
