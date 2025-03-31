@@ -19,4 +19,5 @@
     <string name="English">English</string>
     <string name="View_photos">View photos</string>
     <string name="View_Movies">View Movies</string>
+    <string name="View_isFavorite_Movies">View isFavorite Movies</string>
 </resources>

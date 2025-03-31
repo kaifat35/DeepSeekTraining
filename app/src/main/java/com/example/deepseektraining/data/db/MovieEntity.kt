@@ -1,8 +1,8 @@
 package com.example.deepseektraining.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.ColumnInfo
 
 @Entity(tableName = "movies")
 data class MovieEntity(
@@ -16,5 +16,8 @@ data class MovieEntity(
     @ColumnInfo(name = "ratingKinopoisk")val ratingKinopoisk: Double?,
     @ColumnInfo(name = "ratingImdb")val ratingImdb: Double?,
     @ColumnInfo(name = "filmLength")val filmLength: Int?,
-    val lastUpdated: Long = System.currentTimeMillis()
+    val lastUpdated: Long = System.currentTimeMillis(),
+    @ColumnInfo(name = "isFavorite", defaultValue = "0")
+    var isFavorite: Boolean = false
 )
+

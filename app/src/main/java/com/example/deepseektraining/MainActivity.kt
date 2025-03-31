@@ -28,6 +28,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.deepseektraining.ui.theme.screens.AboutScreen
 import com.example.deepseektraining.ui.theme.screens.LanguageSettingsScreen
 import com.example.deepseektraining.data.SettingsDataStore
+import com.example.deepseektraining.ui.theme.screens.FavoriteMoviesScreen
 import com.example.deepseektraining.ui.theme.screens.MovieScreen
 import com.example.deepseektraining.ui.theme.screens.PhotoScreen
 import com.example.deepseektraining.ui.theme.screens.setLocale
@@ -134,6 +135,9 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
         }
         composable("movies") {
             MovieScreen()
+        }
+        composable("favorites") {
+            FavoriteMoviesScreen(navController)
         }
     }
 }

@@ -7,8 +7,8 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [MovieEntity::class],
-    version = 1,
-    exportSchema = false
+    version = 3,
+    exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
@@ -23,6 +23,7 @@ abstract class AppDatabase : RoomDatabase() {
                     context,
                     AppDatabase::class.java,
                     "movie_db")
+                    .addMigrations(MIGRATION_2_3)
                     .build()
                     .also { instance = it }
             }

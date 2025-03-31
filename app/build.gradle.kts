@@ -87,7 +87,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp("androidx.room:room-compiler:2.6.1")
     // DataStore
-    implementation ("androidx.datastore:datastore-preferences:1.1.0")
+    implementation ("androidx.datastore:datastore-preferences:1.1.4")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
 

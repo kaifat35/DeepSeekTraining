@@ -9,7 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,6 +29,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.deepseektraining.data.model.Movie
 import com.example.deepseektraining.viewmodel.MovieViewModel
+
 
 @Composable
 fun MovieScreen(viewModel: MovieViewModel = hiltViewModel()) {
@@ -43,7 +49,12 @@ fun MovieScreen(viewModel: MovieViewModel = hiltViewModel()) {
         } else {
             LazyColumn {
                 items(movies.value) { movie ->
-                    MovieItem(movie = movie)
+                    MovieItem(
+                        movie = movie,
+                        onFavoriteClick = {
+                            viewModel.toggleFavorite(movie.kinopoiskId ?: 0)
+                        }
+                    )
                 }
             }
         }
@@ -51,7 +62,8 @@ fun MovieScreen(viewModel: MovieViewModel = hiltViewModel()) {
 }
 
 @Composable
-fun MovieItem(movie: Movie) {
+fun MovieItem(movie: Movie,
+              onFavoriteClick: (() -> Unit)? = null) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,6 +90,17 @@ fun MovieItem(movie: Movie) {
             Text(text = movie.nameRu ?: movie.nameEn ?: movie.nameOriginal ?: "No Title")
             Text(text = "Год: ${movie.year ?: "Нет данных"}")
             Text(text = "Рейтинг Кинопоиска: ${movie.ratingKinopoisk ?: "N/A"}")
+        }
+        // Кнопка избранного (если передана)
+        onFavoriteClick?.let { onClick ->
+            IconButton(onClick = { onFavoriteClick.invoke() },
+                modifier = Modifier.padding(start = 8.dp)) {
+                Icon(
+                    imageVector = if (movie.isFavorite == true) Icons.Filled.Favorite else Icons.Outlined.Favorite,
+                    contentDescription = "Избранное",
+                    tint = if (movie.isFavorite == true) Color.Red else Color.Gray
+                )
+            }
         }
     }
 }

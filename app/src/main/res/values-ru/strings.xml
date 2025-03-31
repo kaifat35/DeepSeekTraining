@@ -20,5 +20,6 @@
     <string name="English">Английский</string>
     <string name="View_photos">Посмотреть фотографии</string>
     <string name="View_Movies">Посмотреть фильмы</string>
+    <string name="View_isFavorite_Movies">Посмотреть избранные фильмы</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.deepseektraining.data.model
 
 data class Movie(
     val kinopoiskId: Int?,
+    val isFavorite: Boolean = false,
     val nameRu: String?,
     val nameEn: String?,
     val nameOriginal: String?,

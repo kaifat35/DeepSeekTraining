@@ -1,6 +1,6 @@
 package com.example.deepseektraining.viewmodel
 
-
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.deepseektraining.constants.AppConstants.KINOPOISK_API_KEY
@@ -29,8 +29,20 @@ class MovieViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
+    private val _favoriteMovies = MutableStateFlow<List<Movie>>(emptyList())
+    val favoriteMovies: StateFlow<List<Movie>> get() = _favoriteMovies
+
     init {
-        loadCachedMovies()
+        loadInitialData()
+    }
+
+    private fun loadInitialData() {
+        viewModelScope.launch {
+            // Сначала загружаем кешированные данные
+            loadCachedMovies()
+            // Затем обновляем из сети
+            loadTopPopularMovies()
+        }
     }
 
     fun loadTopPopularMovies() {
@@ -38,21 +50,28 @@ class MovieViewModel @Inject constructor(
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                // Загрузка из сети
                 val response = kinopoiskApiService.getTopPopularMovies(KINOPOISK_API_KEY)
                 val networkMovies = response.items ?: emptyList()
 
-                // Конвертация и сохранение в Room
-                val entities = networkMovies.map { it.toEntity() }
-                movieDao.insertAll(entities)
+                // Сохраняем текущие избранные фильмы перед обновлением
+                val currentFavorites = movieDao.getFavoriteIds()
 
-                // Обновление UI
-                _movies.value = networkMovies
+                // Обновляем фильмы в базе, сохраняя избранные
+                movieDao.updateMovies(
+                    networkMovies.map { movie ->
+                        movie.toEntity().apply {
+                            isFavorite = kinopoiskId in currentFavorites
+                        }
+                    }
+                )
+
             } catch (e: Exception) {
                 _errorMessage.value = e.message ?: "Неизвестная ошибка"
-                loadCachedMovies() // Пытаемся показать кэшированные данные
             } finally {
                 _isLoading.value = false
+                // Обновляем оба списка после завершения
+                loadCachedMovies()
+                loadFavoriteMovies()
             }
         }
     }
@@ -65,7 +84,28 @@ class MovieViewModel @Inject constructor(
                 }
         }
     }
+
+    fun toggleFavorite(movieId: Int) {
+        viewModelScope.launch {
+            Log.d("FAVORITE", "Toggling favorite for $movieId")
+            movieDao.toggleFavorite(movieId)
+            // Обновляем только список избранных, основной список обновится сам через Flow
+            loadFavoriteMovies()
+        }
+    }
+
+    internal fun loadFavoriteMovies() {
+        viewModelScope.launch {
+            movieDao.getFavoriteMovies()
+                .collect { entities ->
+                    _favoriteMovies.value = entities.map { it.toDomain() }
+                        .filter { it.isFavorite == true }
+                    Log.d("FavoriteDebug", "Loaded ${_favoriteMovies.value.size} favorites")
+                }
+        }
+    }
 }
+
 
 // Extension functions для конвертации между Entity и Domain моделями
 fun Movie.toEntity(): MovieEntity = MovieEntity(
@@ -91,5 +131,6 @@ fun MovieEntity.toDomain(): Movie = Movie(
     year = this.year,
     ratingKinopoisk = this.ratingKinopoisk,
     ratingImdb = this.ratingImdb,
-    filmLength = this.filmLength
+    filmLength = this.filmLength,
+    isFavorite = this.isFavorite
 )
