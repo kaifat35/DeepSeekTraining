@@ -42,7 +42,7 @@ fun HomeScreen(navController: NavController) {
                 Button(onClick = { navController.navigate("movies") }) {
                     Text(stringResource(R.string.View_Movies))
                 }
-                Button(onClick = { navController.navigate("movies") }) {
+                Button(onClick = { navController.navigate("favorites") }) {
                     Text(stringResource(R.string.View_isFavorite_Movies))
                 }
             }
