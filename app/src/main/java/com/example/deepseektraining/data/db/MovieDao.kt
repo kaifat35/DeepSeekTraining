@@ -11,16 +11,14 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
     @Transaction
     suspend fun updateMovies(movies: List<MovieEntity>) {
-        // Сохраняем текущие состояния избранного
         val currentFavorites = getFavoriteIds().toSet()
-        // Обновляем только новые/измененные фильмы
+        clearAll()
         movies.forEach { movie ->
-            if (!currentFavorites.contains(movie.kinopoiskId)) {
-                movie.isFavorite = false
-            }
+            movie.isFavorite = movie.kinopoiskId in currentFavorites
         }
         insertAll(movies)
     }
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieEntity>)
 
@@ -41,7 +39,16 @@ interface MovieDao {
 
     @Query("SELECT isFavorite FROM movies WHERE kinopoiskId = :movieId")
     suspend fun isFavorite(movieId: Int): Boolean
+
     @Query("SELECT kinopoiskId FROM movies WHERE isFavorite = 1")
     suspend fun getFavoriteIds(): List<Int>
 
+    @Query("SELECT kinopoiskId, isFavorite FROM movies")
+    suspend fun debugFavorites(): List<FavoriteDebugInfo>
+
+    // Добавьте этот data class в тот же файл:
+    data class FavoriteDebugInfo(
+        val kinopoiskId: Int,
+        val isFavorite: Boolean
+    )
 }

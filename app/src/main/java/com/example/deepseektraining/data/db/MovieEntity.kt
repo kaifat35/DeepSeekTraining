@@ -18,6 +18,6 @@ data class MovieEntity(
     @ColumnInfo(name = "filmLength")val filmLength: Int?,
     val lastUpdated: Long = System.currentTimeMillis(),
     @ColumnInfo(name = "isFavorite", defaultValue = "0")
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean
 )
 

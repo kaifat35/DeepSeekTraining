@@ -137,7 +137,7 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
             MovieScreen()
         }
         composable("favorites") {
-            FavoriteMoviesScreen(navController)
+            FavoriteMoviesScreen()
         }
     }
 }

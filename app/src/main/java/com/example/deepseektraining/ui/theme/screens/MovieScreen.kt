@@ -28,11 +28,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.deepseektraining.data.model.Movie
+import com.example.deepseektraining.viewmodel.FavoriteViewModel
 import com.example.deepseektraining.viewmodel.MovieViewModel
 
 
 @Composable
-fun MovieScreen(viewModel: MovieViewModel = hiltViewModel()) {
+fun MovieScreen(viewModel: MovieViewModel = hiltViewModel(),
+                favoriteViewModel: FavoriteViewModel = hiltViewModel()) {
     val movies = viewModel.movies.collectAsState()
     val isLoading = viewModel.isLoading.collectAsState()
     val errorMessage = viewModel.errorMessage.collectAsState()
@@ -51,9 +53,7 @@ fun MovieScreen(viewModel: MovieViewModel = hiltViewModel()) {
                 items(movies.value) { movie ->
                     MovieItem(
                         movie = movie,
-                        onFavoriteClick = {
-                            viewModel.toggleFavorite(movie.kinopoiskId ?: 0)
-                        }
+                        onFavoriteClick = { favoriteViewModel.toggleFavorite(movie.kinopoiskId ?: 0) }
                     )
                 }
             }
@@ -93,12 +93,12 @@ fun MovieItem(movie: Movie,
         }
         // Кнопка избранного (если передана)
         onFavoriteClick?.let { onClick ->
-            IconButton(onClick = { onFavoriteClick.invoke() },
-                modifier = Modifier.padding(start = 8.dp)) {
+            IconButton(onClick = onFavoriteClick) {
                 Icon(
-                    imageVector = if (movie.isFavorite == true) Icons.Filled.Favorite else Icons.Outlined.Favorite,
-                    contentDescription = "Избранное",
-                    tint = if (movie.isFavorite == true) Color.Red else Color.Gray
+                    imageVector = if (movie.isFavorite) Icons.Filled.Favorite
+                    else Icons.Outlined.Favorite,
+                    tint = if (movie.isFavorite) Color.Red else Color.Gray,
+                    contentDescription = "Избранное"
                 )
             }
         }
