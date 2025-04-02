@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
+
 }
 
 android {
@@ -93,4 +94,9 @@ dependencies {
 
     // Для обработки метаданных
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
+
+    //WorkManager
+    //implementation ("androidx.work:work-runtime-ktx:2.10.0")
+
+
 }

@@ -46,7 +46,6 @@ interface MovieDao {
     @Query("SELECT kinopoiskId, isFavorite FROM movies")
     suspend fun debugFavorites(): List<FavoriteDebugInfo>
 
-    // Добавьте этот data class в тот же файл:
     data class FavoriteDebugInfo(
         val kinopoiskId: Int,
         val isFavorite: Boolean

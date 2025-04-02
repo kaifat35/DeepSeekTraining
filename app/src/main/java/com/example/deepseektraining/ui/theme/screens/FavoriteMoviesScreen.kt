@@ -21,7 +21,6 @@ fun FavoriteMoviesScreen(
 ) {
     val favoriteMovies by favoriteViewModel.favoriteMovies.collectAsState()
 
-    // Логирование для отладки
     LaunchedEffect(favoriteMovies) {
         println("[FAV UI] Текущие избранные: ${favoriteMovies.map { it.kinopoiskId }}")
     }

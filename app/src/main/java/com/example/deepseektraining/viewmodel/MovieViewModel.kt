@@ -7,6 +7,7 @@ import com.example.deepseektraining.data.api.KinopoiskApiService
 import com.example.deepseektraining.data.db.MovieDao
 import com.example.deepseektraining.data.db.MovieEntity
 import com.example.deepseektraining.data.model.Movie
+//import com.example.deepseektraining.data.di.WorkManagerHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,10 +18,15 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val kinopoiskApiService: KinopoiskApiService,
-    private val movieDao: MovieDao
+    private val movieDao: MovieDao,
+    //workManagerHelper: WorkManagerHelper
 ) : ViewModel() {
 
-    // Регион: Основной список фильмов
+    /*init {
+        loadInitialData()
+        workManagerHelper.scheduleMovieUpdate() // Запускаем периодическое обновление
+    }*/
+
     private val _movies = MutableStateFlow<List<Movie>>(emptyList())
     val movies: StateFlow<List<Movie>> = _movies
 
@@ -56,7 +62,6 @@ class MovieViewModel @Inject constructor(
                 val response = kinopoiskApiService.getTopPopularMovies(KINOPOISK_API_KEY)
                 val networkMovies = response.items ?: emptyList()
 
-                // Получаем текущие избранные через отдельный запрос
                 val currentFavorites = movieDao.getFavoriteIds()
 
                 movieDao.updateMovies(
@@ -82,7 +87,7 @@ class MovieViewModel @Inject constructor(
 // Конвертеры моделей
 fun Movie.toEntity(): MovieEntity = MovieEntity(
     kinopoiskId = this.kinopoiskId ?: 0,
-    isFavorite = this.isFavorite ?: false,
+    isFavorite = this.isFavorite,
     nameRu = this.nameRu,
     nameEn = this.nameEn,
     nameOriginal = this.nameOriginal,
