@@ -94,9 +94,9 @@ dependencies {
 
     // Для обработки метаданных
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.10.0")
 
-    //WorkManager
-    //implementation ("androidx.work:work-runtime-ktx:2.10.0")
-
+    
 
 }

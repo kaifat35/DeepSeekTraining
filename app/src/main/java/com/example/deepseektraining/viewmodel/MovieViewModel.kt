@@ -19,13 +19,13 @@ import javax.inject.Inject
 class MovieViewModel @Inject constructor(
     private val kinopoiskApiService: KinopoiskApiService,
     private val movieDao: MovieDao,
-    //workManagerHelper: WorkManagerHelper
+   // workManagerHelper: WorkManagerHelper
 ) : ViewModel() {
 
-    /*init {
-        loadInitialData()
-        workManagerHelper.scheduleMovieUpdate() // Запускаем периодическое обновление
-    }*/
+//    init {
+//        loadInitialData()
+//        workManagerHelper.scheduleMovieUpdate() // Запускаем периодическое обновление
+//    }
 
     private val _movies = MutableStateFlow<List<Movie>>(emptyList())
     val movies: StateFlow<List<Movie>> = _movies
