@@ -1,5 +1,6 @@
 package com.example.deepseektraining
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -141,7 +142,14 @@ fun DeepSeekTraining(viewModel: SettingsViewModel) {
         }
     }
 }
-
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
