@@ -16,6 +16,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import com.example.deepseektraining.data.model.Photo
 
 
@@ -30,26 +32,32 @@ fun PhotoScreen() {
     LaunchedEffect(Unit) {
         viewModel.loadPhotos()
     }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ){
-        if (isLoading) {
-            CircularProgressIndicator()
-        } else {
-            LazyColumn {
-                items(photos) { photo ->
-                    AsyncImage(
-                        model = photo.urls.regular,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                    )
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        content = { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(16.dp)
+            ) {
+                if (isLoading) {
+                    CircularProgressIndicator()
+                } else {
+                    LazyColumn {
+                        items(photos) { photo ->
+                            AsyncImage(
+                                model = photo.urls.regular,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp)
+                            )
+                        }
+                    }
                 }
             }
         }
-    }
+    )
 }

@@ -6,12 +6,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -30,34 +32,44 @@ fun LanguageSettingsScreen(viewModel: SettingsViewModel) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        Text(stringResource(R.string.Select_a_language), style = MaterialTheme.typography.headlineMedium)
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        content = { innerPadding ->
+            Column(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .padding(16.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    stringResource(R.string.Select_a_language),
+                    style = MaterialTheme.typography.headlineMedium
+                )
 
-        Button(onClick = {
-            setLocale(context, "ru")
-            scope.launch {
-                viewModel.setLanguage("ru")
-            }
-            restartActivity(context) // Перезапуск Activity
-        }) {
-            Text(stringResource(R.string.Russian))
-        }
+                Button(onClick = {
+                    setLocale(context, "ru")
+                    scope.launch {
+                        viewModel.setLanguage("ru")
+                    }
+                    restartActivity(context) // Перезапуск Activity
+                }) {
+                    Text(stringResource(R.string.Russian))
+                }
 
-        Button(onClick = {
-            setLocale(context, "en")
-            scope.launch {
-                viewModel.setLanguage("en")
+                Button(onClick = {
+                    setLocale(context, "en")
+                    scope.launch {
+                        viewModel.setLanguage("en")
+                    }
+                    restartActivity(context) // Перезапуск Activity
+                }) {
+                    Text(stringResource(R.string.English))
+                }
             }
-            restartActivity(context) // Перезапуск Activity
-        }) {
-            Text(stringResource(R.string.English))
         }
-    }
+    )
 }
 
 

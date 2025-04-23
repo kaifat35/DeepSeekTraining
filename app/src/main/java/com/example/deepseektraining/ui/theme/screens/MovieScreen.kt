@@ -15,6 +15,8 @@ import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -43,22 +45,34 @@ fun MovieScreen(viewModel: MovieViewModel = hiltViewModel(),
         viewModel.loadTopPopularMovies()
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
-        if (isLoading.value) {
-            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
-        } else if (errorMessage.value != null) {
-            Text(text = "Ошибка: ${errorMessage.value}", color = Color.Red)
-        } else {
-            LazyColumn {
-                items(movies.value) { movie ->
-                    MovieItem(
-                        movie = movie,
-                        onFavoriteClick = { favoriteViewModel.toggleFavorite(movie.kinopoiskId ?: 0) }
-                    )
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        content = { innerPadding ->
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)) {
+                if (isLoading.value) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+                } else if (errorMessage.value != null) {
+                    Text(text = "Ошибка: ${errorMessage.value}", color = Color.Red)
+                } else {
+                    LazyColumn {
+                        items(movies.value) { movie ->
+                            MovieItem(
+                                movie = movie,
+                                onFavoriteClick = {
+                                    favoriteViewModel.toggleFavorite(
+                                        movie.kinopoiskId ?: 0
+                                    )
+                                }
+                            )
+                        }
+                    }
                 }
             }
         }
-    }
+    )
 }
 
 @Composable

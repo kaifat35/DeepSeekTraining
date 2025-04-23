@@ -1,4 +1,4 @@
-package com.example.deepseektraining.ui.theme.screens
+package com.example.deepseektraining.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
