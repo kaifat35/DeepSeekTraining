@@ -20,9 +20,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import com.example.deepseektraining.data.model.Photo
 
-
-
-
 @Composable
 fun PhotoScreen() {
     val viewModel: PhotoViewModel = viewModel()

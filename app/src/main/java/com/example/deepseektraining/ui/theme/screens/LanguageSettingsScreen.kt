@@ -6,7 +6,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,12 +19,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import java.util.Locale
 import androidx.compose.ui.unit.dp
 import com.example.deepseektraining.MainActivity
 import com.example.deepseektraining.R
-import kotlinx.coroutines.launch
 import com.example.deepseektraining.viewmodel.SettingsViewModel
+import kotlinx.coroutines.launch
+import java.util.Locale
 
 @Composable
 fun LanguageSettingsScreen(viewModel: SettingsViewModel) {

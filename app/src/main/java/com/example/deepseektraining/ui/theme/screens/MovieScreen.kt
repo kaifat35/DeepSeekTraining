@@ -3,8 +3,10 @@ package com.example.deepseektraining.ui.theme.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,7 +35,6 @@ import com.example.deepseektraining.data.model.Movie
 import com.example.deepseektraining.viewmodel.FavoriteViewModel
 import com.example.deepseektraining.viewmodel.MovieViewModel
 
-
 @Composable
 fun MovieScreen(viewModel: MovieViewModel = hiltViewModel(),
                 favoriteViewModel: FavoriteViewModel = hiltViewModel()) {
@@ -52,6 +53,7 @@ fun MovieScreen(viewModel: MovieViewModel = hiltViewModel(),
             Column(modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)) {
+                Spacer(modifier = Modifier.height(24.dp))
                 if (isLoading.value) {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
                 } else if (errorMessage.value != null) {
