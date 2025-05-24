@@ -65,10 +65,10 @@ dependencies {
     implementation (libs.ui.tooling.preview)
     implementation (libs.androidx.lifecycle.viewmodel.compose)
     implementation (libs.androidx.activity.compose.v182)
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
-    testImplementation ("org.mockito:mockito-core:5.5.0")
+    testImplementation (libs.androidx.core.testing)
+    testImplementation (libs.mockito.core)
     testImplementation (libs.mockito.kotlin)
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.1")
+    testImplementation (libs.kotlinx.coroutines.test)
 
     // Retrofit для работы с API
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
@@ -79,23 +79,23 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:2.7.0")
     
     //Hilt для работы с API
-    implementation("com.google.dagger:hilt-android:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.55")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    ksp ("com.google.dagger:hilt-android-compiler:2.51.1")
+    ksp ("com.google.dagger:hilt-android-compiler:2.55")
 
     // Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    ksp("androidx.room:room-compiler:2.6.1")
+    ksp("androidx.room:room-compiler:2.7.1")
     // DataStore
-    implementation ("androidx.datastore:datastore-preferences:1.1.4")
+    implementation ("androidx.datastore:datastore-preferences:1.1.7")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.1")
 
     // Для обработки метаданных
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0")
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.10.0")
+    implementation("androidx.work:work-runtime-ktx:2.10.1")
 
     
 
